@@ -4,8 +4,22 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var router = express.Router();
+var trains=[
+  {name:'Cheran Express',TotalSeats:200,AvailableSeats:200},
+  {name:'Pallavan Express',TotalSeats:200,AvailableSeats:200},
+  {name:'Kovai Express',TotalSeats:200,AvailableSeats:200},
+  {name:'Inter city Express',TotalSeats:200,AvailableSeats:200},
+  {name:'Mumbai Express',TotalSeats:200,AvailableSeats:200},
+]
+
+router.get('/',function(req,res,next){
+  res.render('index',{title:'Express'});
+});
+
+router.get('/train',function(req,res,next){
+  res.render('train',{count:trains.length,trains:trains});
+});
 
 var app = express();
 
@@ -19,9 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
+app.use(router);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

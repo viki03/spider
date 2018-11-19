@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Train Tickets</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <H1 style="text-align:center"> Train Tickets</H1>
+    <table>
+        <tr>
+        <th>Trains</th>
+        <th>Total Seats</th>
+        <th>Available Seats</th>
+        <th>Book</th>
+        </tr>
+        <% for (train of trains) { %>
+            <tr>
+             <td><%=train.name %></td>
+             <td><%=train.TotalSeats %></td>
+             <td><%=train.AvailableSeats %></td>
+            </tr>
+             <% } %>
+        
+        
+        
+        
+    </table>
+  </body>
+</html>
