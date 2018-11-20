@@ -6,11 +6,11 @@ var logger = require('morgan');
 
 var router = express.Router();
 var trains=[
-  {name:'Cheran Express',TotalSeats:200,AvailableSeats:200},
-  {name:'Pallavan Express',TotalSeats:200,AvailableSeats:200},
-  {name:'Kovai Express',TotalSeats:200,AvailableSeats:200},
-  {name:'Inter city Express',TotalSeats:200,AvailableSeats:200},
-  {name:'Mumbai Express',TotalSeats:200,AvailableSeats:200},
+  {name:'CheranExpress',TotalSeats:200,AvailableSeats:200},
+  {name:'PallavanExpress',TotalSeats:200,AvailableSeats:200},
+  {name:'KovaiExpress',TotalSeats:200,AvailableSeats:200},
+  {name:'IntercityExpress',TotalSeats:200,AvailableSeats:200},
+  {name:'MumbaiExpress',TotalSeats:200,AvailableSeats:200},
 ]
 
 router.get('/',function(req,res,next){
@@ -18,6 +18,19 @@ router.get('/',function(req,res,next){
 });
 
 router.get('/train',function(req,res,next){
+  res.render('train',{count:trains.length,trains:trains});
+});
+router.post('/train',function(req,res,next){
+  console.log(Object.keys(req.body)[0]);
+  check=Object.keys(req.body)[0];
+  for (train in trains)
+  {
+    if (trains[train].name==check)
+    {
+      console.log(trains[train].name);
+      trains[train].AvailableSeats-=1;
+    }
+  }
   res.render('train',{count:trains.length,trains:trains});
 });
 

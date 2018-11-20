@@ -6,6 +6,7 @@
   </head>
   <body>
     <H1 style="text-align:center"> Train Tickets</H1>
+    <form method="POST">
     <table>
         <tr>
         <th>Trains</th>
@@ -18,7 +19,7 @@
              <td><%=train.name %></td>
              <td><%=train.TotalSeats %></td>
              <td><%=train.AvailableSeats %></td>
-             <td><input type="submit" value="BOOK"></button></td>
+             <td><input type="submit" name=<%=train.name %> value="BOOK"></button></td>
             </tr>
              <% } %>
     </table>
